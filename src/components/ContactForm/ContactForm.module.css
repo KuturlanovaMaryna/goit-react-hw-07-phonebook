@@ -4,20 +4,26 @@
 }
 
 .addBtn{
-    width: 90px;
+    width: 100px;
     height: 30px;
     border: 1px solid transparent;
     border-radius: 4px;
     margin: 20px auto;
-    background-color: rgb(250, 237, 57);
+    background-color: #66FCF1;
     cursor: pointer;
     margin-top: 40px;
     margin-bottom: 60px;
 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     
     
+}
+.addBtn:focus{
+    background-color: #C5C6C7;
+}
+.addBtn:hover {
+    background-color: #C5C6C7;
 }
 
 p{
