@@ -1,5 +1,5 @@
 import css from './Search.module.css';
-import { filterContact } from 'redux/filter.reducer';
+import { filterContact } from 'redux/phone.reduser';
 import { useDispatch } from 'react-redux';
 
 const Search = () => {

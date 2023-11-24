@@ -1,30 +1,31 @@
 import React, { useState } from 'react';
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { createNewUser } from 'redux/phone.reduser';
+import { fetchAddContact } from 'redux/phone.reduser';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { nanoid } from 'nanoid';
+import { selectContacts } from 'redux/phone.selectors';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.phoneStore.contacts);
+  const contacts = useSelector(selectContacts);
 
   const handleNameChange = e => {
     setName(e.target.value);
   };
 
-  const handleNumberChange = e => {
-    setNumber(e.target.value);
+  const handlePhoneChange = e => {
+    setPhone(e.target.value);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
     const contact = {
       name,
-      number,
+      phone,
     };
 
     if (
@@ -39,9 +40,9 @@ const ContactForm = () => {
       ...contact,
       id: nanoid(),
     };
-    dispatch(createNewUser(newContact));
+    dispatch(fetchAddContact(newContact));
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -64,8 +65,8 @@ const ContactForm = () => {
         <input
           className={css.inputNumber}
           type="tel"
-          value={number}
-          onChange={handleNumberChange}
+          value={phone}
+          onChange={handlePhoneChange}
           name="number"
           pattern="\+?\d{1,4}?[.\-\s]?\(?\d{1,3}?\)?[.\-\s]?\d{1,4}[.\-\s]?\d{1,4}[.\-\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
